@@ -18,34 +18,25 @@
 			"value" => ""
 			);
 	echo form_input($data);
-	
 	echo form_label("credit (Must be all numbers and 16 characters long)","credit");
 	$data = array(
 			"name" => "credit",
 			"id"   => "credit",
-			"value" => ""
+			"value" => "",
+			'maxlength' =>  "16"
 	);
 	echo form_input($data);
 	
-	echo form_label("year (The last two digit of the year, Example YY)","year");
+	echo form_label("Credit card expiring date (The last two digit of the year, Example YY)","year");
 	$data = array(
-			"name" => "year",
-			"id"   => "year",
+			"name" => "date",
+			"id"   => "date",
 			"value" => "",
-			'style' => "width:5%",
-			'maxlength' =>  "2"
+			'style' => "width:10%",
+			'maxlength' =>  "5"
 	);
 	echo form_input($data);
 	
-	echo form_label("month (only two character long, Example MM)","month");
-	$data = array(
-			"name" => "month",
-			"id"   => "month",
-			"value" => "",
-            'style'       => 'width:5%',
-			'maxlength' =>  "2"
-	);
-	echo form_input($data);
 	echo form_submit('submit', 'submit');
 	echo form_close();
 ?>

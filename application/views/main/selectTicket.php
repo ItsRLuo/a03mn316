@@ -27,9 +27,6 @@
 	echo "<br/>";
 	echo form_submit('Select', 'Select');
 
-	echo anchor('main/userInformation', 'Selects ') . "<br />";
-
-	
 	function getTicketInfo($viewing) {
 		$view_string = "%s at %s (%s), on %s, at %s, %s seats available";
 		return sprintf($view_string, $viewing->title, $viewing->name, $viewing->address,
