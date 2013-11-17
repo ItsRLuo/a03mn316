@@ -1,64 +1,39 @@
 
 <?php
 
-	echo form_open("main/selectTicket");
-	
-	
-	$movie_info_str = "Movie viewings" ;
-	if ($_POST["Movies"] != "") {
-		$movie_info_str = $movie_info_str . " for " . $_POST["Movies"];
-	}
-	
-	if ($_POST["Theaters"] != "") {
-		$movie_info_str = $movie_info_str . " at " . $_POST["Theaters"];
-	}
+	echo form_open("main/selectSeat");
+ 	echo $movieInfoStr;
 
-	$movie_info_str = $movie_info_str . " on " . $_POST["Days"];
-
-	
-	$movie_info_str = $movie_info_str . ":<br/><br/>";
-	echo $movie_info_str;
-	
-	$viewings_array = array("None selected");
-	$viewings = $this->showtime_model->get_specific_showtimes($_POST["Movies"], $_POST["Theaters"], $_POST["Days"]);
-
-	echo "<br/><br/>";
 	
 	$numEntries = 0;
-	foreach ($viewings->result() as $viewing) {
-		// $view_string = "%s at %s (%s), on %s, %s, %s seats available";
-		echo form_checkbox(array("class" => "ticketSelect checkbox"));
-		printTicketInfo($viewing);
+	$g = $viewings->result();
+	
+	$ticketInfo = getTicketInfo($g[0]);
+	echo form_checkbox(array("name" => "checkMe", "class" => "ticketSelect checkbox",
+			"value" => $numEntries, "checked" => true));
+	echo $ticketInfo . "<br/>";
+	$numEntries += 1;
+	
+	foreach (array_slice($g, 1) as $viewing) {
+		$ticketInfo = getTicketInfo($viewing);
+		echo form_checkbox(array("name" => "checkMe", "class" => "ticketSelect checkbox", 
+								  "value" => $numEntries));
+		echo $ticketInfo . "<br/>";
 		$numEntries += 1;
-		echo "<br/>";
 	}
-	
+
 	echo $numEntries . " entries in total<br/>";
-	
-// 	echo form_dropdown("Viewings", $viewings_array, "None selected");
-	
+
 	echo "<br/>";
 	echo form_submit('Select', 'Select');
-	
-	//echo form_close();
-	//45
+
 	echo anchor('main/userInformation', 'Selects ') . "<br />";
+
 	
-	// echo blahfoo;
-	
-// 	function filterCriteria($viewings, $movie, $date, $theater) {
-		
-// 		$x = $this->showtime_model->get_specific_showtimes($movie, $theater, $date);
-// 		foreach ($x->result() as $viewing) {
-// 			// printTicketInfo($viewing);
-// 		}
-		
-// 	}
-	
-	function printTicketInfo($viewing) {
+	function getTicketInfo($viewing) {
 		$view_string = "%s at %s (%s), on %s, at %s, %s seats available";
-		echo sprintf($view_string, $viewing->title, $viewing->name, $viewing->address,
-									$viewing->date, $viewing->time, $viewing->available) . "<br/>";
+		return sprintf($view_string, $viewing->title, $viewing->name, $viewing->address,
+				$viewing->date, $viewing->time, $viewing->available) . "<br/>";
 	}
 	
 ?>

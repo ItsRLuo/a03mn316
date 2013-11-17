@@ -41,10 +41,10 @@ class Showtime_model extends CI_Model {
 		
 		$qstring = "select m.title, t.name, t.address, s.date, s.time, s.available
 								from movie m, theater t, showtime s
-								where m.id = s.movie_id and t.id = s.theater_id";
+								where m.id = s.movie_id and t.id = s.theater_id and s.available > 0";
 		$adjusted_qstring = "select m.title, t.name, t.address, s.date, s.time, s.available
 								from g2chenri.movie m, g2chenri.theater t, g2chenri.showtime s
-								where m.id = s.movie_id and t.id = s.theater_id";
+								where m.id = s.movie_id and t.id = s.theater_id and s.available > 0";
 		
 		if ($theater != "") {
 			$qstring .= " and t.name = \"$theater\"";
@@ -62,7 +62,6 @@ class Showtime_model extends CI_Model {
 		
 		echo "Query was: " . $adjusted_qstring . ";";
 	
-		
 		$query = $this->db->query($qstring);
 		
 		return $query;

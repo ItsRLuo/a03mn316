@@ -18,8 +18,7 @@ base_url = '<?= base_url();?>';
 <script type="text/javascript" src="<?php echo base_url();?>js/prototype.js"></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/scriptaculous.js" ></script>
 <script type="text/javascript" src="<?php echo base_url();?>js/customtools.js" ></script>
-
-<script type="text/javascript" src="<?php echo base_url();?>js/scripts/singleCheckboxes.js"></script>
+<script type="text/javascript" src="<?php echo base_url();?>js/scripts/javaCode.js"></script>
 </head>
 <body>
 <div id="wrapper">

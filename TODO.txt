@@ -1,0 +1,16 @@
+- Consider possible test cases for names (liek apostrophes, tricky escape sequences, etc.)
+- For all cases of validatoin, provide both client AND server side validation.
+- Separate controller, model, view functionality.
+
+QUESTIONS TO ASK PROF:
+- How to deal with form validation printing?
+	- Check things carefully...
+- Dropdown OK for selecting movie.
+	- Yes.
+- Session objects are not stored...not even upon serializing.
+	- Trick: re-execute the query, apparently websites do thsi all the time?..
+- Javascript: inject into header?
+	- It's OK for now to have it in the body.
+
+BEFORE HANDING IN:
+- Remember to get rid of the lines that print the query out!
